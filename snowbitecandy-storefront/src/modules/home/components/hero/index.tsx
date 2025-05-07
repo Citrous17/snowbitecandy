@@ -1,5 +1,4 @@
 'use client'
-import { Github } from "@medusajs/icons"
 import { Button, Heading } from "@medusajs/ui"
 import { useRouter } from "next/navigation"
 
@@ -31,7 +30,6 @@ const Hero = () => {
         >
           <Button variant="secondary">
             Order Now
-            <Github />
           </Button>
         </a>
       </div>

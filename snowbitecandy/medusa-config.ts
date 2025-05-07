@@ -11,5 +11,26 @@ module.exports = defineConfig({
       jwtSecret: process.env.JWT_SECRET || "supersecret",
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     }
-  }
+  },
+  modules: [
+    {
+      resolve: "@medusajs/medusa/file",
+      options: {
+        backendUrl: process.env.MEDUSA_BACKEND_URL,
+        providers: [
+          {
+            resolve: "./src/modules/gcs-file-provider",
+            id: "gcs",
+            options: {
+              projectId: process.env.GOOGLE_GC_PROJECT_ID,
+              keyFilename: process.env.GOOGLE_GC_KEYFILE,
+              bucketName: process.env.GOOGLE_GC_BUCKET_NAME,
+              // baseUrl optional
+            }
+          }
+        ]
+      }
+    },
+    // ... other modules
+  ]
 })
