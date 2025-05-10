@@ -6,7 +6,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import Thumbnail from "../thumbnail"
 import PreviewPrice from "./price"
 
-export default async function ProductPreview({
+export default function ProductPreview({
   product,
   isFeatured,
   region,
@@ -25,7 +25,7 @@ export default async function ProductPreview({
   // }
 
   const { cheapestPrice } = getProductPrice({
-    product,
+    product
   })
 
   return (
