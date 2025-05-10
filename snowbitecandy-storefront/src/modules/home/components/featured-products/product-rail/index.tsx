@@ -22,7 +22,11 @@ export default async function ProductRail({
     },
   })
 
+  console.log("pricedProducts", pricedProducts)
+
   if (!pricedProducts) {
+    console.log("No products found for this collection")
+    console.error("No products found for this collection")
     return null
   }
 

@@ -7,20 +7,26 @@ const Hero = () => {
 
   const storeLink = `${process.env.NEXT_PUBLIC_BASE_URL}/categories/candy`
   return (
-    <div className="h-[92vh] w-full border-b border-ui-border-base relative bg-ui-bg-subtle">
+    <div className="h-[76vh] w-full border-b border-ui-border-base relative bg-ui-bg-subtle">
       <img
         src="/HeroBackdrop.png"
         alt="Background"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-[92vh] object-cover opacity-90 bg-black"
       />
-      <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center small:p-32 gap-6">
+      <div className="absolute inset-0 z-10 flex flex-col h-[92vh] justify-center items-center text-center small:p-32 gap-6 bg-black bg-opacity-50 ">
         <span>
-        <div className="bg-white rounded-lg p-6 shadow-lg">
+        <div className="p-8 ">
           <Heading
             level="h1"
-            className="text-3xl leading-10 text-white text-ui-fg-base font-normal"
+            className="text-8xl  text-white pb-10"
           >
-            Snow Bite Candy Store
+          Snow Bite Candy Store
+          </Heading>
+          <Heading
+            level="h1"
+            className="text-4xl leading-10 text-white"
+          >
+          The best shop for all your favorite freeze-dried delights!
           </Heading>
         </div>
         </span>

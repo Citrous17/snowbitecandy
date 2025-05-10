@@ -4,6 +4,9 @@ import FeaturedProducts from "@modules/home/components/featured-products"
 import Hero from "@modules/home/components/hero"
 import { listCollections } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
+import OurStory from "@modules/home/components/our-story"
+import WhyFreezeDried from "@modules/home/components/why-freeze-dried"
+import CustomerReviews from "@modules/home/components/customer-reviews"
 
 export const metadata: Metadata = {
   title: "Snow Bite Candy Store",
@@ -36,6 +39,9 @@ export default async function Home(props: {
           <FeaturedProducts collections={collections} region={region} />
         </ul>
       </div>
+      <WhyFreezeDried />
+      <CustomerReviews />
+      <OurStory />
     </>
   )
 }

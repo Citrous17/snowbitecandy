@@ -47,6 +47,7 @@ export default class GcsFileProviderService extends AbstractFileProviderService 
   }
 
   static validateOptions(options: Record<string, any>) {
+    console.log("Validating GCS options:", options)
     if (!options.projectId || !options.keyFilename || !options.bucketName) {
       throw new MedusaError(
         MedusaError.Types.INVALID_ARGUMENT,
