@@ -59,6 +59,7 @@ module.exports = {
         "3xl": "2rem",
       },
       fontFamily: {
+        fredoka: ["Fredoka", "sans-serif"],
         sans: [
           "Inter",
           "-apple-system",
@@ -68,7 +69,7 @@ module.exports = {
           "Helvetica Neue",
           "Ubuntu",
           "sans-serif",
-        ],
+        ],     
       },
       keyframes: {
         ring: {

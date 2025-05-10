@@ -1,6 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+html {
+  font-family: 'Fredoka', sans-serif;
+}
+
+h1 {
+  font-family: 'Fredoka', sans-serif;
+}
 
 @layer utilities {
   /* Chrome, Safari and Opera */
@@ -50,6 +59,10 @@
 }
 
 @layer components {
+  .font-fredoka-override {
+    font-family: 'Fredoka', sans-serif !important;
+  }
+  
   .content-container {
     @apply max-w-[1440px] w-full mx-auto px-6;
   }
