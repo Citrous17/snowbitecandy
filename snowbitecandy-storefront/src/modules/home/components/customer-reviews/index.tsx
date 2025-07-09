@@ -40,6 +40,46 @@ const reviews = [
             { name: "Candy 2", image: "/candy2.jpg" }
         ],
         rating: 5
+    },
+        {
+        name: "Taylor",
+        text: "Fast shipping & great taste!",
+        image: "/reviews/taylor.jpg",
+        items: [
+            { name: "Candy 1", image: "/candy1.jpg" },
+            { name: "Candy 2", image: "/candy2.jpg" }
+        ],
+        rating: 5
+    },
+        {
+        name: "Taylor",
+        text: "Fast shipping & great taste!",
+        image: "/reviews/taylor.jpg",
+        items: [
+            { name: "Candy 1", image: "/candy1.jpg" },
+            { name: "Candy 2", image: "/candy2.jpg" }
+        ],
+        rating: 5
+    },
+        {
+        name: "Taylor",
+        text: "Fast shipping & great taste!",
+        image: "/reviews/taylor.jpg",
+        items: [
+            { name: "Candy 1", image: "/candy1.jpg" },
+            { name: "Candy 2", image: "/candy2.jpg" }
+        ],
+        rating: 5
+    },
+        {
+        name: "Taylor",
+        text: "Fast shipping & great taste!",
+        image: "/reviews/taylor.jpg",
+        items: [
+            { name: "Candy 1", image: "/candy1.jpg" },
+            { name: "Candy 2", image: "/candy2.jpg" }
+        ],
+        rating: 5
     }
 ]
 

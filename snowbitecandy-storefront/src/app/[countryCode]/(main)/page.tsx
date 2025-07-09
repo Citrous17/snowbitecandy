@@ -7,6 +7,7 @@
   import OurStory from "@modules/home/components/our-story"
   import WhyFreezeDried from "@modules/home/components/why-freeze-dried"
   import CustomerReviews from "@modules/home/components/customer-reviews"
+import CustomFreezeDrySlider from "@modules/home/components/custom-order/page"
 
   export const metadata: Metadata = {
     title: "Snow Bite Candy Store",
@@ -39,6 +40,7 @@
             <FeaturedProducts collections={collections} region={region} />
           </ul>
         </div>
+        <CustomFreezeDrySlider />
         <WhyFreezeDried />
       </>
     )

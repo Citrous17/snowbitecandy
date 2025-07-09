@@ -2,7 +2,7 @@
 // This is a Client Component as indicated by 'use client'
 'use client'
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { HttpTypes } from "@medusajs/types"
 import { Text } from "@medusajs/ui"
 import InteractiveLink from "@modules/common/components/interactive-link"
@@ -19,10 +19,14 @@ export default function ProductRail({
 }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const PRODUCTS_PER_PAGE = 5
+  const formContainerRef = useRef<HTMLDivElement | null>(null)
+  const scrollToForm = () => {
+    formContainerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
 
   // Make sure pricedProducts is always an array to avoid any issues
   const products = Array.isArray(pricedProducts) ? pricedProducts : []
-  
+
   const visibleProducts = products.slice(
     currentIndex,
     currentIndex + PRODUCTS_PER_PAGE
@@ -32,8 +36,23 @@ export default function ProductRail({
   const canGoForward = currentIndex + PRODUCTS_PER_PAGE < products.length
 
   return (
-    <div className="content-container py-12 small:py-24">
-      <div className="flex justify-between mb-8">
+    <div className="content-container small:py-24 mt-40 lg:mt-64" ref={formContainerRef}>
+      {/* Header */}
+      <div
+        className="cursor-pointer flex items-center justify-center"
+        onClick={scrollToForm}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-pink-500 mx-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+        <span className="text-xl lg:text-4xl font-bold text-black text-center pb-4 my-4 lg:my-8">
+          See our featured products!
+        </span>
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-pink-500 mx-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+      <div className="flex justify-between mb-8 mt-28" >
         <Text className="text-5xl font-fredoka">{collection.title}</Text>
         <InteractiveLink href={`/collections/${collection.handle}`}>
           View all

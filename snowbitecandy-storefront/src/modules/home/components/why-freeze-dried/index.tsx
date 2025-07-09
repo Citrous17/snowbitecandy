@@ -7,11 +7,11 @@ import ScienceAnimation from "@lib/animations/ScienceAnimation.json";
 
 const WhyFreezeDried = () => {
     return (
-        <div className="w-full py-32 px-6 bg-cream-10 text-center">
-            <Heading level="h2" className="text-7xl mb-4">
+        <div className="w-full lg:py-20 px-6 bg-cream-10 text-center">
+            <Heading level="h2" className="text-4xl lg:text-7xl mb-4">
                 Why Freeze-Dried?
             </Heading>
-            <p className="max-w-3xl mx-auto text-xl text-gray-600">
+            <p className="max-w-3xl mx-auto text-md lg:text-xl text-gray-600">
                 Freeze drying preserves the flavor and nutrients of your favorite treats while giving them a unique, crunchy texture. It transforms ordinary candy into extraordinary experiences, making every bite a delightful surprise. Enjoy the rich taste of your favorite sweets with a satisfying crunch that you won't find anywhere else!
             </p>
 
@@ -23,7 +23,7 @@ const WhyFreezeDried = () => {
                         autoplay={true}
                         className="w-16 h-24 mb-4"
                     />
-                    <p className="max-w-sm text-gray-600">
+                    <p className="max-w-sm text-gray-600 text-sm lg:text-lg">
                         Freeze Dried Candy has a best taste shelf life of 2 years, and is safe to eat for up to 25 years!
                     </p>
                 </div>
@@ -35,7 +35,7 @@ const WhyFreezeDried = () => {
                         autoplay={true}
                         className="w-24 h-24 mb-4"
                     />
-                    <p className="max-w-sm text-gray-600">
+                    <p className="max-w-sm text-gray-600 text-sm lg:text-lg">
                         Our Freeze Dried Candy retains its nurtitional content, and no additional preservatives are added.
                     </p>
                 </div>
@@ -47,7 +47,7 @@ const WhyFreezeDried = () => {
                         autoplay={true}
                         className="w-24 h-24 mb-4"
                     />
-                    <p className="max-w-sm text-gray-600">
+                    <p className="max-w-md lg:max-w-md text-gray-600 text-sm lg:text-lg">
                         Freeze Dried candy is made using a scientific process that removes moisture from the candy in a high-tech vacuum chamber, creating a crunchy texture and intense flavor.
                     </p>
                 </div>

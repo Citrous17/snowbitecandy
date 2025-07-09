@@ -37,60 +37,50 @@ export default function CategoryTemplate({
   getParents(category)
 
   return (
-    <div
-      className="flex flex-col small:flex-row small:items-start py-6 content-container"
-      data-testid="category-container"
-    >
-      <RefinementList sortBy={sort} data-testid="sort-by-container" />
-      <div className="w-full">
-        <div className="flex flex-row mb-8 text-2xl-semi gap-4">
-          {parents &&
-            parents.map((parent) => (
-              <span key={parent.id} className="text-ui-fg-subtle">
-                <LocalizedClientLink
-                  className="mr-4 hover:text-black"
-                  href={`/categories/${parent.handle}`}
-                  data-testid="sort-by-link"
-                >
-                  {parent.name}
-                </LocalizedClientLink>
-                /
-              </span>
-            ))}
-          <h1 data-testid="category-page-title">{category.name}</h1>
-        </div>
-        {category.description && (
-          <div className="mb-8 text-base-regular">
-            <p>{category.description}</p>
+    <div className="content-container py-6">
+      <div className="flex flex-col lg:flex-row gap-8" data-testid="category-container">
+        {/* Sidebar Filters */}
+
+        {/* Main Content */}
+        <main className="w-full lg:w-3/4">
+          {/* Breadcrumbs */}
+          <div className="mb-4 flex flex-wrap items-center text-sm text-ui-fg-subtle gap-2">
+            <span className="font-semibold text-ui-fg-base text-4xl">{category.name}</span>
+            <span className="font-semibold text-ui-fg-base text-xl">{category.description}</span>
           </div>
-        )}
-        {category.category_children && (
-          <div className="mb-8 text-base-large">
-            <ul className="grid grid-cols-1 gap-2">
-              {category.category_children?.map((c) => (
-                <li key={c.id}>
-                  <InteractiveLink href={`/categories/${c.handle}`}>
-                    {c.name}
-                  </InteractiveLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-        <Suspense
-          fallback={
-            <SkeletonProductGrid
-              numberOfProducts={category.products?.length ?? 8}
+
+          {/* Subcategories */}
+          {category.category_children?.length > 0 && (
+            <div className="mb-8">
+              <h2 className="text-lg font-medium mb-2">Subcategories</h2>
+              <ul className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                {category.category_children.map((c) => (
+                  <li key={c.id}>
+                    <InteractiveLink href={`/categories/${c.handle}`}>
+                      {c.name}
+                    </InteractiveLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Product Grid */}
+          <Suspense
+            fallback={
+              <SkeletonProductGrid
+                numberOfProducts={category.products?.length ?? 8}
+              />
+            }
+          >
+            <PaginatedProducts
+              sortBy={sort}
+              page={pageNumber}
+              categoryId={category.id}
+              countryCode={countryCode}
             />
-          }
-        >
-          <PaginatedProducts
-            sortBy={sort}
-            page={pageNumber}
-            categoryId={category.id}
-            countryCode={countryCode}
-          />
-        </Suspense>
+          </Suspense>
+        </main>
       </div>
     </div>
   )
