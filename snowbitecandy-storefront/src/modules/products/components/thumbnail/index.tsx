@@ -51,6 +51,16 @@ const ImageOrPlaceholder = ({
   image,
   size,
 }: Pick<ThumbnailProps, "size"> & { image?: string }) => {
+  // Define a mapping for the sizes prop based on the thumbnail's size variant.
+  const sizeMap = {
+    small: "180px",
+    medium: "290px",
+    large: "440px",
+    // Use the responsive string for 'full' or when the size is undefined.
+    full: "(max-width: 576px) 280px, (max-width: 768px) 360px, (max-width: 992px) 480px, 800px",
+    square: "100vw", // '100vw' is a safe default for fluid aspect-ratio containers
+  }
+
   return image ? (
     <Image
       src={image}
@@ -58,7 +68,8 @@ const ImageOrPlaceholder = ({
       className="absolute inset-0 object-cover object-center"
       draggable={false}
       quality={50}
-      sizes="(max-width: 576px) 280px, (max-width: 768px) 360px, (max-width: 992px) 480px, 800px"
+      // Set the sizes prop dynamically based on the component's size
+      sizes={sizeMap[size || "full"]}
       fill
     />
   ) : (
