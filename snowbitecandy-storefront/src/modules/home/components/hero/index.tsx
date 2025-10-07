@@ -1,5 +1,6 @@
 'use client'
 import { Button, Heading } from "@medusajs/ui"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Link from "next/link"
 
 const Hero = () => {
@@ -42,21 +43,18 @@ const Hero = () => {
           className="mt-8 flex flex-col sm:flex-row items-center gap-4 animate-slide-up"
           style={{ animationDelay: '600ms' }}
         >
-          <Link href="/store" passHref>
-            <Button
+          <LocalizedClientLink
+              href='/store'
               className="w-full sm:w-auto text-lg px-8 py-3 rounded-full border-2 border-white text-white bg-transparent hover:bg-white hover:text-black"
             >
               Shop All Candy
-            </Button>
-          </Link>
-          <Link href="/collections/featured" passHref>
-             <Button
-              variant="secondary"
+          </LocalizedClientLink>
+          <LocalizedClientLink
+             href="/collections/featured"
               className="w-full sm:w-auto text-lg px-8 py-3 rounded-full border-2 border-white text-white bg-transparent hover:bg-white hover:text-black"
             >
               See Best Sellers
-            </Button>
-          </Link>
+          </LocalizedClientLink>
         </div>
       </div>
     </div>

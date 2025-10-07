@@ -40,7 +40,6 @@ import CustomFreezeDrySlider from "@modules/home/components/custom-order/page"
             <FeaturedProducts collections={collections} region={region} />
           </ul>
         </div>
-        <CustomFreezeDrySlider />
         <WhyFreezeDried />
       </>
     )
