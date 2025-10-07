@@ -36,7 +36,7 @@ export default function ProductRail({
   const canGoForward = currentIndex + PRODUCTS_PER_PAGE < products.length
 
   return (
-    <div className="content-container small:py-24 mt-40 lg:mt-64" ref={formContainerRef}>
+    <div className="content-container" ref={formContainerRef}>
       {/* Header */}
       <div
         className="cursor-pointer flex items-center justify-center"
@@ -45,14 +45,14 @@ export default function ProductRail({
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-pink-500 mx-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
-        <span className="text-xl lg:text-4xl font-bold text-black text-center pb-4 my-4 lg:my-8">
+        <span className="text-xl lg:text-4xl font-bold text-black text-center pb-16 lg:pb-8">
           See our featured products!
         </span>
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-pink-500 mx-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </div>
-      <div className="flex justify-between mb-8 mt-28" >
+      <div className="flex justify-between mb-8" >
         <Text className="text-5xl font-fredoka">{collection.title}</Text>
         <InteractiveLink href={`/collections/${collection.handle}`}>
           View all

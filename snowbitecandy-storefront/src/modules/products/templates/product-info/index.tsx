@@ -13,24 +13,14 @@ type ProductInfoProps = {
 
 const ProductInfo = ({ product }: ProductInfoProps) => {
   const [expanded, setExpanded] = useState(false)
-  const [isSmallScreen, setIsSmallScreen] = useState(false)
 
-  useEffect(() => {
-    const checkScreen = () => {
-      setIsSmallScreen(window.innerWidth < 640)
-    }
-    checkScreen()
-    window.addEventListener("resize", checkScreen)
-    return () => window.removeEventListener("resize", checkScreen)
-  }, [])
-
-  const shouldTruncate = !!product.description && product.description.length > 180 && isSmallScreen
+  const shouldTruncate = !!product.description && product.description.length > 180
 
   return (
     <div id="product-info">
-      <div className="flex flex-col gap-y-4 pt-4 lg:pt-12 w-full">
+      <div className="flex flex-col gap-y-4 pt-4 w-full">
         {product.collection && (
-          <div className="-mx-4 lg:-mx-8">
+          <div>
             <LocalizedClientLink
               href={`/collections/${product.collection.handle}`}
               className="flex w-full bg-burgundy-90 text-white text-2xl lg:text-3xl px-6 ml-6 py-3 rounded-l-full shadow-md"
@@ -50,17 +40,17 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         <div className="relative w-full">
           <Text
             className={clsx(
-              "text-medium lg:text-2xl text-ui-fg-subtle whitespace-pre-line transition-all",
+              "text-sm text-ui-fg-subtle whitespace-pre-line transition-all",
               {
-                "line-clamp-none": expanded,
-                "max-h-[6.5rem] overflow-hidden": !expanded, // approx 3 lines
+                "line-clamp-none lg:text-md": expanded,
+                "max-h-[6.5rem] overflow-hidden lg:text-2xl ": !expanded, // approx 3 lines
               }
             )}
             data-testid="product-description"
           >
             {!expanded && shouldTruncate ? (
               <>
-                {product.description.slice(0, 180)}
+                {product?.description?.slice(0, 180)}
                 <span className="text-gray-400">...</span>
               </>
             ) : (
@@ -71,7 +61,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
           {/* Read more toggle */}
           {shouldTruncate && (
             <button
-              className="text-white text-2xl border rounded-lg p-4 bg-burgundy-90 font-semibold mt-8 hover:underline"
+              className="flex justify-center text-red text-2xl border border-black rounded-lg p-4 bg-white font-semibold mt-8 hover:underline"
               onClick={() => setExpanded(!expanded)}
             >
               {expanded ? "Read less" : "Read more"}

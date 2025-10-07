@@ -1,15 +1,14 @@
 import React, { Suspense } from "react"
+import { notFound } from "next/navigation"
+import { HttpTypes } from "@medusajs/types"
+
 import ImageGallery from "@modules/products/components/image-gallery"
 import ProductActions from "@modules/products/components/product-actions"
-import ProductOnboardingCta from "@modules/products/components/product-onboarding-cta"
 import ProductTabs from "@modules/products/components/product-tabs"
 import RelatedProducts from "@modules/products/components/related-products"
 import ProductInfo from "@modules/products/templates/product-info"
 import SkeletonRelatedProducts from "@modules/skeletons/templates/skeleton-related-products"
 import ProductActionsWrapper from "./product-actions-wrapper"
-import QuickBuyButton from "@modules/products/templates/QuickBuyButton"
-import { notFound } from "next/navigation"
-import { HttpTypes } from "@medusajs/types"
 
 type ProductTemplateProps = {
   product: HttpTypes.StoreProduct
@@ -17,60 +16,59 @@ type ProductTemplateProps = {
   countryCode: string
 }
 
-const ProductTemplate = ({
-  product,
-  region,
-  countryCode,
-}: ProductTemplateProps) => {
-  if (!product || !product.id) return notFound()
+const ProductTemplate = ({ product, region, countryCode }: ProductTemplateProps) => {
+  if (!product || !product.id) {
+    return notFound()
+  }
 
   return (
     <>
-      <div className="w-full flex flex-col items-start py-6 relative " data-testid="product-container">
-        <div className="flex flex-row items-start relative w-full ">
-          {/* Image Section */}
-          <div className="w-1/3 px-4 relative">
-            <ImageGallery images={product?.images || []} />
+      {/* Main container with a responsive grid layout */}
+      <div
+        className="content-container flex flex-col items-center py-6 md:py-12 bg-cream-gradient"
+        data-testid="product-container"
+      >
+        {/* Grid for image gallery and product info */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 w-full">
+          
+          {/* Image Gallery - Left Column */}
+          {/* ADDED: 'sticky top-20 self-start' to make the image gallery follow the user on scroll */}
+          <div className="sticky top-20 pt-5 self-start flex flex-col items-center">
+            <ImageGallery images={product.images || []} />
           </div>
 
-          {/* Info Section */}
-          <div className="w-full flex flex-col">
-            {/* Quick Buy Button */}
-            <QuickBuyButton />
+          {/* Product Info & Actions - Right Column */}
+          <div className="flex flex-col gap-y-6 md:gap-y-8">
+            
+            {/* ProductInfo contains title, subtitle, price */}
+            <ProductInfo product={product} />
 
-            <div className="flex flex-col sticky " >
-              <ProductInfo product={product} />
-            </div>
+            {/* ProductTabs contain description, ingredients, etc. */}
+            <ProductTabs product={product} />
 
-            {/* Desktop View */}
-            <div className="w-full hidden sm:block">
-              <div className="flex w-full flex-col gap-8 mt-8">
-                <ProductOnboardingCta />
-                <div className="flex flex-col sticky top-48 py-8 gap-y-12 w-full">
-                  <Suspense fallback={<ProductActions disabled product={product} region={region} />}>
-                    <ProductActionsWrapper id={product.id} region={region} />
-                  </Suspense>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile View */}
-        <div className="w-full block sm:hidden">
-          <div id="product-onboarding" className="flex w-full flex-col gap-8 mt-8">
-            <div className="flex flex-col sticky top-48 py-8 gap-y-12 w-full">
-              <Suspense fallback={<ProductActions disabled product={product} region={region} />}>
+            {/* ProductActions contains variant selectors, quantity, and the 'Add to Cart' button.
+              This section is now sticky within its parent column for a better user experience on desktop.
+            */}
+            <div className="sticky flex flex-col gap-y-4">
+              <Suspense
+                fallback={<ProductActions disabled={true} product={product} region={region} />}
+              >
                 <ProductActionsWrapper id={product.id} region={region} />
               </Suspense>
             </div>
+            
           </div>
         </div>
-        <div className="content-container my-8 small:my-32" data-testid="related-products-container">
-          <Suspense fallback={<SkeletonRelatedProducts />}>
-            <RelatedProducts product={product} countryCode={countryCode} />
-          </Suspense>
-        </div>
+      </div>
+      
+      {/* Related Products Section */}
+      <div
+        className="content-container my-16 md:my-24"
+        data-testid="related-products-container"
+      >
+        <Suspense fallback={<SkeletonRelatedProducts />}>
+          <RelatedProducts product={product} countryCode={countryCode} />
+        </Suspense>
       </div>
     </>
   )

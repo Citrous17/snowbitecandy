@@ -1,9 +1,9 @@
 {
-  "name": "medusa-next",
-  "version": "1.0.3",
+  "name": "Snow Bite Candy storefront",
+  "version": "1.0.4",
   "private": true,
-  "author": "Kasper Fabricius Kristensen <kasper@medusajs.com> & Victor Gerbrands <victor@medusajs.com> (https://www.medusajs.com)",
-  "description": "Next.js Starter to be used with Medusa V2",
+  "author": "Kyle Stallings (citrous@tamu.edu)",
+  "description": "Storefront webapp",
   "keywords": [
     "medusa-storefront"
   ],

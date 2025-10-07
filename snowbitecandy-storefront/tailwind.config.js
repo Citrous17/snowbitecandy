@@ -20,6 +20,9 @@ module.exports = {
         visibility: "visibility",
         padding: "padding-top padding-right padding-bottom padding-left",
       },
+      backgroundImage: {
+        'cream-gradient' : "/cream-bg.jpg",
+      },
       colors: {
         grey: {
           0: "#FFFFFF",
@@ -87,6 +90,7 @@ module.exports = {
       fontFamily: {
         fredoka: ["Fredoka", "sans-serif"],
         sans: [
+          "var(--font-fredoka-one)",
           "Inter",
           "-apple-system",
           "BlinkMacSystemFont",
