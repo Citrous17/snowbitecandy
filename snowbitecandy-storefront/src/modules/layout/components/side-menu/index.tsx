@@ -11,9 +11,12 @@ import { HttpTypes } from "@medusajs/types"
 
 const SideMenuItems = {
   Home: "/",
-  Store: "/store",
+  'Halloween': "/collections/halloween",
+  'All Candy ' : "/categories/candy",
+  Chocolates : "/categories/chocolates",
+  'Ice Cream' : "/categories/ice-cream",
+  Fruits: "/categories/fruit",
   Account: "/account",
-  Cart: "/cart",
 }
 
 const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
@@ -51,7 +54,7 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                   >
                     <div className="flex justify-end" id="xmark">
                       <button data-testid="close-menu-button" onClick={close}>
-                        <XMark />
+                        <XMark/>
                       </button>
                     </div>
                     <ul className="flex flex-col gap-6 items-start justify-start">

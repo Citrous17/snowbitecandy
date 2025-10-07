@@ -1,61 +1,61 @@
-// In @modules/products/components/image-gallery.tsx
-'use client'
-
-import { useState } from "react"
+"use client"
 import { HttpTypes } from "@medusajs/types"
-import { clx } from "@medusajs/ui"
 import Image from "next/image"
+import { useState } from "react"
 
 type ImageGalleryProps = {
   images: HttpTypes.StoreProductImage[]
 }
 
 const ImageGallery = ({ images }: ImageGalleryProps) => {
-  const [activeImage, setActiveImage] = useState(images[0]?.url || null)
+  const [currentImage, setCurrentImage] = useState(images[0]?.url)
+
+  if (!images || images.length === 0) {
+    return <div className="h-96 w-full bg-gray-200 animate-pulse rounded-lg" />
+  }
+  
+  const handleThumbnailSelect = (url: string) => {
+    setCurrentImage(url)
+  }
 
   return (
-    <div className="flex flex-col gap-y-4">
-      {/* Main Featured Image */}
-      <div className="relative size-[400px] rounded-lg shadow-md">
-        {activeImage && (
-          <Image
-            src={activeImage}
-            alt="Main product image"
-            fill
-            className="object-cover rounded-lg"
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            priority
-          />
-        )}
+    <div className="flex flex-col-reverse md:flex-col gap-y-4 w-full">
+      {/* Main Image Display */}
+      <div className="relative aspect-square w-full rounded-lg overflow-hidden">
+        <Image
+          src={currentImage || images[0].url}
+          alt={`Product image`}
+          fill
+          className="object-cover object-center"
+          priority={true}
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
       </div>
 
-      {/* Thumbnails */}
-      {images.length > 1 && (
-        <div className="grid grid-cols-4 sm:grid-cols-5 gap-4">
-          {images.map((image) => (
+      {/* Thumbnail Toolbar: Becomes sticky on mobile */}
+      <div className="sticky top-0 z-20 bg-white py-2 md:static md:bg-transparent">
+        <div className="flex items-center justify-center gap-x-2">
+          {images.map((image, index) => (
             <button
               key={image.id}
-              onClick={() => image.url && setActiveImage(image.url)}
-              className={clx(
-                "relative aspect-square w-full overflow-hidden rounded-md transition-transform hover:scale-105",
-                {
-                  "border-2 border-brand-purple shadow-lg": image.url === activeImage,
-                  "border border-gray-200": image.url !== activeImage,
-                }
-              )}
+              onClick={() => handleThumbnailSelect(image.url)}
+              className={`h-16 w-16 rounded-md border overflow-hidden transition-all ${
+                currentImage === image.url
+                  ? "border-gray-900 shadow-md"
+                  : "border-gray-200"
+              }`}
             >
-              {image.url && (
-                <Image
-                  src={image.url}
-                  alt={`Thumbnail ${image.id}`}
-                  fill
-                  className="object-cover"
-                />
-              )}
+              <Image
+                src={image.url}
+                alt={`Thumbnail ${index + 1}`}
+                width={64}
+                height={64}
+                className="object-cover object-center w-full h-full"
+              />
             </button>
           ))}
         </div>
-      )}
+      </div>
     </div>
   )
 }

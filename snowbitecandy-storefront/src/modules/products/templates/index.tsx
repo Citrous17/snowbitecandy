@@ -17,50 +17,53 @@ type ProductTemplateProps = {
 }
 
 const ProductTemplate = ({ product, region, countryCode }: ProductTemplateProps) => {
+
   if (!product || !product.id) {
     return notFound()
   }
 
+  const handleThumbnailClick = () => {
+
+  }
+
   return (
     <>
-      {/* Main container with a responsive grid layout */}
       <div
         className="content-container flex flex-col items-center py-6 md:py-12 bg-cream-gradient"
         data-testid="product-container"
       >
-        {/* Grid for image gallery and product info */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 w-full">
-          
-          {/* Image Gallery - Left Column */}
-          {/* ADDED: 'sticky top-20 self-start' to make the image gallery follow the user on scroll */}
-          <div className="sticky top-20 pt-5 self-start flex flex-col items-center">
-            <ImageGallery images={product.images || []} />
+          {/* Image Gallery Column */}
+          {/* This div is now the scroll target and is only sticky on desktop */}
+          <div
+            className="md:sticky md:top-20 md:self-start flex flex-col items-center"
+          >
+            <ImageGallery
+              images={product.images || []}
+            />
           </div>
 
-          {/* Product Info & Actions - Right Column */}
+          {/* Product Info & Actions Column */}
           <div className="flex flex-col gap-y-6 md:gap-y-8">
-            
-            {/* ProductInfo contains title, subtitle, price */}
             <ProductInfo product={product} />
-
-            {/* ProductTabs contain description, ingredients, etc. */}
             <ProductTabs product={product} />
-
-            {/* ProductActions contains variant selectors, quantity, and the 'Add to Cart' button.
-              This section is now sticky within its parent column for a better user experience on desktop.
-            */}
             <div className="sticky flex flex-col gap-y-4">
               <Suspense
-                fallback={<ProductActions disabled={true} product={product} region={region} />}
+                fallback={
+                  <ProductActions
+                    disabled={true}
+                    product={product}
+                    region={region}
+                  />
+                }
               >
                 <ProductActionsWrapper id={product.id} region={region} />
               </Suspense>
             </div>
-            
           </div>
         </div>
       </div>
-      
+
       {/* Related Products Section */}
       <div
         className="content-container my-16 md:my-24"
